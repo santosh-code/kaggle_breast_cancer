@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  data_profiling:
+    cmd: python src/data_profiling.py
+    deps:
+    - path: data/Breast_cancer_dataset.csv
+      hash: md5
+      md5: 6165d90b8708bb1c1dd14245cc6bef46
+      size: 125204
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 1f05f938073b09c166855577eae60fa4
+      size: 234
+    - path: src/data_profiling.py
+      hash: md5
+      md5: 7363d323227187c32eb5590126771629
+      size: 473
+    outs:
+    - path: reports/eda_report.html
+      hash: md5
+      md5: 43aff1648756f6e3007af96d7db02fc5
+      size: 80618959
+  train_svm:
+    cmd: python src/model_building.py
+    deps:
+    - path: config.yaml
+      hash: md5
+      md5: 86c0159ce6e7cbcb044eaeea6f887c82
+      size: 179
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: e2bacec0df1d32907d9ad88dff78daa1
+      size: 323
+    - path: src/model_building.py
+      hash: md5
+      md5: 4362f38ea22687b2c55efccb86556cde
+      size: 2194
+    - path: src/train_test_split.py
+      hash: md5
+      md5: e6944ef013271c41f25486299b517d3d
+      size: 335
+    outs:
+    - path: models/svm_model.pkl
+      hash: md5
+      md5: 33f6cc9ab74a2e7590375a8ce15ada4c
+      size: 28731
